@@ -2,10 +2,14 @@ BT-Tagesordnung to iCal
 =======================
 Ziel dieses Projektes ist es, 
 
-1. die aktuelle Tagesordnung des Bundestages in ein maschinenlesbares Format zu konvertieren und diese
-2. in einem iCal-Feed zur Verfügung zu stellen.
+1. die aktuelle Tagesordnung des Bundestages auszulesen,
+2. sie in ein maschinenlesbares Format zu konvertieren und letztlich alles
+3. in einem iCal-Feed zur Verfügung zu stellen.
 
-Das Projekt ist ein Fork von [Mark Frimston](https://github.com/Frimkron)s Projekt [PHPCalFeed](https://github.com/Frimkron/PHPCalFeed). Deshalb folgt nun auch das alte `README`.
+Ursprünglich ist es ein Fork von [Mark Frimston](https://github.com/Frimkron)s Projekt [PHPCalFeed](https://github.com/Frimkron/PHPCalFeed) (zur Verfügung gestellt unter [MIT-Lizenz](https://github.com/Frimkron/PHPCalFeed/blob/master/LICENCE)). 
+Die gleichen Lizenzbestimmungen gelten für dieses neue Projekt. 
+
+Nun folgt das alte `README`.
 
 
 PHPCalFeed
