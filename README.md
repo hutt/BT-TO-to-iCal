@@ -7,7 +7,7 @@ Ziel dieses Projektes ist es,
 3. in einem iCal-Feed zur Verfügung zu stellen.
 
 Ursprünglich ist es ein Fork von [Mark Frimston](https://github.com/Frimkron)s Projekt [PHPCalFeed](https://github.com/Frimkron/PHPCalFeed) (zur Verfügung gestellt unter [MIT-Lizenz](https://github.com/Frimkron/PHPCalFeed/blob/master/LICENCE)). 
-Die gleichen Lizenzbestimmungen gelten für dieses neue Projekt. 
+Die gleichen [Lizenzbestimmungen](/LICENCE) gelten für dieses neue Projekt. 
 
 Nun folgt das alte `README`.
 
