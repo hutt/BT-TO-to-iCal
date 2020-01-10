@@ -7,7 +7,7 @@ Todo-Liste
 ### Daten holen
 - [ ] TO von bundestag.de parsen
 	- wird in strukturierter Form bereitgestellt unter `https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year={Jahr}&week={Kalenderwoche}`.
-- [ ] Unterscheiden lernen historischen TOs, die nicht mehr geändert werden und TOs, bei denen regelmäßig nach einer neuen Version geschaut werden soll.
+- [ ] Unterscheiden lernen zwischen historischen TOs, die nicht mehr aktualisiert werden und TOs, bei denen regelmäßig nach einer aktuelleren Version geschaut werden muss.
 	- historische TO:
 		- `Kalenderwoche von TO-Datum` < `Kalenderwoche von heutigem Datum`
 		- Kein Hinweis »Zwischen den Fraktionen besteht kein Einvernehmen über die Tagesordnung der {Sitzungsnummer}. Sitzung«
@@ -24,7 +24,7 @@ Todo-Liste
 	- [ ] iCalendar in Textfiles?
 - [ ] historische TOs speichern
 - [ ] aktuelle TOs aktualisieren
--[ ] \(optional) Methode zum manuellen Aktualisieren alter TOs
+- [ ] \(optional) Methode zum manuellen Aktualisieren alter TOs
 - [ ] \(optional) Tagesordnungspunkt analysieren auf
 	- Fortschritt des Gesetzentwurfs (Beratung, Erste Beratung, Zweite Beratung, Dritte Beratung)
 	- TOP-Typ und Anzahl der TOP-Typen (Antrag, Beschlussempfehlung, Bericht, Gesetzentwurf)
