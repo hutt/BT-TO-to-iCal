@@ -1,0 +1,43 @@
+{
+	"name": "Tagesordnung",
+	"events": [
+		{
+			"name": "TOP 1 Befragung der Bundesregierung",
+			"date": "2020-01-15",
+			"time": "13:00",
+			"duration": "1h 05m",
+			"description": "Befragung der Bundesregierung",
+			"url": "https://www.bundestag.de/dokumente/textarchiv/2020/kw03-de-regierungsbefragung-674658"
+		},
+		{
+			"name": "TOP 2 Fragestunde",
+			"date": "2020-01-15",
+			"time": "14:05",
+			"duration": "1h 00m",
+			"description": "Fragestunde\nDrucksache 19/…",
+			"url": "https://www.bundestag.de/dokumente/textarchiv/2020/kw03-de-fragestunde-674660"
+		},
+		{
+			"name": "Sitzungsunterbrechung",
+			"date": "2020-01-15",
+			"time": "15:05",
+			"duration": "1h 25m",
+			"description": "Unterbrechung der Sitzung bis 16.30 Uhr"
+		},
+		{
+			"name": "TOP 3 Nachhaltige Mobilitätsforschung",
+			"date": "2020-01-15",
+			"time": "16:30",
+			"duration": "35m",
+			"description": "Beratung der Beschlussempfehlung und des Berichts des Ausschusses für Bildung, Forschung und Technikfolgenabschätzung (18. Ausschuss) zu dem Antrag der Fraktionen der CDU/CSU und SPDNachhaltige Mobilitätsforschung für die Zukunft – Innovativ, technologieoffen, ressortübergreifend.",
+			"url": "https://www.bundestag.de/dokumente/textarchiv/2020/kw03-de-mobilitaetsforschung-674662"
+		}
+	],
+	"recurring-events": [
+		{
+			"name": "Ada Lovelace Day",
+			"recurrence": "yearly on 256th day",
+			"description": "Celebrating the world's first computer programmer"
+		}
+	]
+}
