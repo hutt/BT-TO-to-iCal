@@ -19,7 +19,7 @@ Todo-Liste
 
 ### Daten verarbeiten
 - [ ] Format zum Speichern finden
-	- [ ] JSON?
+	- [x] JSON
 	- [ ] XML?
 	- [ ] iCalendar in Textfiles?
 - [ ] historische TOs speichern
