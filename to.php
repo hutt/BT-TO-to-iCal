@@ -8,18 +8,47 @@
 	@email github@jh0.eu
 	@description retrieve schedule from bundestag.de, parse it, filter events for specific information, save it, update saved events
 
+	class TOData ( )
+		protected week
+		protected year
+		protected sitzungen
+
+		__construct ( week, year )
+			return void
+
+		public isCached ( )
+			return boolean 
+
+		public load ( )
+			return void
+
+		protected update ( )
+			return void
+
+		protected write ( )
+			return void
+
+		protected delete ( )
+			return void
+
+		protected buildRequestURL ( )
+			returns url
+
+		protected fetch ( )
+			return json
+
+
 	class TOP ( )
-		public id
-		public name
 		public begin
 		public end
+		public nr
+		public title
 		public description
-		public sitzungsNummer
 		public drucksachen
 		public gremien
 		public akteure
 		public abstimmung
-		public url
+		public artikelUrl
 
 		__construct ( begin, end, name, description )
 			return void
@@ -27,7 +56,7 @@
 		abstract protected filterFor ( search )
 			return void
 
-		protected filterForID ( )
+		protected filterForID extends filterFor ( )
 			return void
 
 		…
@@ -36,50 +65,11 @@
 	class TO ( )
 		public week
 		public year
+		public sitzungsnummer
 		protected tops
-
-		public parseHTML ( html )
-			return void
-
-		public parseJSON ( json )
-			return void
-
-		public exportJSON ( week, year )
-			return JSON_export
-
-		public update ( week, year )
-			return void
-
-		public write ( week, year )
-			return void
-
-		public delete ( week, year )
-			return void
 
 		public needsUpdates ( week, year )
 			return boolean
 
-
-	class FetchData ( week, year )
-		protected week
-		protected year
-
-		__construct ( week, year )
-			return void
-
-		public setWeek ( week )
-			return void
-
-		public setYear ( year )
-			return void
-
-		public isCached ( )
-			return boolean 
-
-		protected buildRequestURL ( date )
-			returns url
-
-		public fetch ( )
-			return HTML_site
 */
 
