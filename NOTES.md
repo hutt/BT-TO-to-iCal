@@ -18,10 +18,7 @@ Todo-Liste
 			- `Kalenderwoche von TO-Datum` > `Kalenderwoche von heutigem Datum`
 
 ### Daten verarbeiten
-- [ ] Format zum Speichern finden
-	- [x] JSON
-	- [ ] XML?
-	- [ ] iCalendar in Textfiles?
+- [x] Format für Calendar Master File: JSON (`calendar-master.json`)
 - [ ] historische TOs speichern
 - [ ] aktuelle TOs aktualisieren
 - [ ] \(optional) Methode zum manuellen Aktualisieren alter TOs
@@ -42,7 +39,13 @@ Todo-Liste
 
 
 ### Daten anzeigen
-- [ ] als iCal-Feed
+- [x] Feeds
+	- [x] iCal
+	- [x] RSS
+	- [x] XML
+	- [x] JSON
+	- [x] HTML (Web Calendar)
+	- [x] HTML-Fragment (`calendar-frag.html`)
 - [ ] \(optional) als iCal-Export
 	- [ ] Export-Funktion für einzelne Einträge
 	- [ ] Filter-Funktion nach Gremium, Akteur(en), Art der Abstimmung
