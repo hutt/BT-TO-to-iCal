@@ -23,17 +23,17 @@ Todo-Liste
 - [ ] aktuelle TOs aktualisieren
 - [ ] \(optional) Methode zum manuellen Aktualisieren alter TOs
 - [ ] \(optional) Tagesordnungspunkt analysieren auf
-	- Fortschritt des Gesetzentwurfs (Beratung, Erste Beratung, Zweite Beratung, Dritte Beratung)
-	- TOP-Typ und Anzahl der TOP-Typen (Antrag, Beschlussempfehlung, Bericht, Gesetzentwurf)
-	- Akteure (Bundesregierung, Bundesrat, Ausschuss, Fraktion(en))
-	- Gremien (Ausschuss/Ausschüsse, Enquête-Kommission(en), etc.)
-	- verlinkte Drucksachen & Drs.-Nr.
-	- Abstimmungs-Art
+	- [ ] Fortschritt des Gesetzentwurfs (Beratung, Erste Beratung, Zweite Beratung, Dritte Beratung)
+	- [ ] TOP-Typ und Anzahl der TOP-Typen (Antrag, Beschlussempfehlung, Bericht, Gesetzentwurf)
+	- [ ] Akteure (Bundesregierung, Bundesrat, Ausschuss, Fraktion(en))
+	- [ ] Gremien (Ausschuss/Ausschüsse, Enquête-Kommission(en), etc.)
+	- [ ] verlinkte Drucksachen & Drs.-Nr.
+	- [ ] Abstimmungs-Art
 		- keine
 		- einfach
 		- namentlich
 		- geheim (nur bei Personalentscheidungen)
-	- zugehöriger Artikel auf bundestag.de
+	- [ ] zugehöriger Artikel auf bundestag.de
 		- Bild holen
 		- vielleicht ideal, um verlinkte Drucksachen abzurufen?
 
