@@ -73,6 +73,9 @@
 		public setYear ( year )
 			return void
 
+		public isCached ( )
+			return boolean 
+
 		protected buildRequestURL ( date )
 			returns url
 
