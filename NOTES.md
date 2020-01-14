@@ -50,3 +50,119 @@ Todo-Liste
 	- [ ] Export-Funktion für einzelne Einträge
 	- [ ] Filter-Funktion nach Gremium, Akteur(en), Art der Abstimmung
 	- [ ] Export-Funktion für mehrere Einträge
+
+
+# to.php
+
+SETTINGS
+	const DB_NAME // Name der DB
+
+CLASSES
+
+class TODB
+==========
+
+	VARS
+	----
+	protected db
+
+	METHODS
+	-------
+	public __construct()::void
+		this->db = open database (SQLite3->open())
+
+	public checkStatus()::void
+		checks if database file already exists.
+		when not: runs createDB()
+
+	public inDB( object )::boolean
+		tells if object is already saved in db
+
+	protected createDB()::void
+		creates database with name 'DB_NAME'
+		including tables 'tops' and 'sitzungen'
+
+
+class FetchTOs
+==============
+
+	VARS
+	----
+	protected week
+	protected year
+
+	METHODS
+	-------
+	public __construct( week, year )::void
+		sets parameter variables for class
+
+	public fetch()::String[HTML_page]
+		downloads page content as HTML
+
+	protected buildRequestURL()::String[url]
+		Builds URL in 'https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year={year}&week={week}'' scheme
+
+
+class FetchTOPDetails
+=====================
+
+	VARS
+	----
+	protected articleUrl
+	protected siteContents
+
+	METHODS
+	-------
+	public __construct ( TOP )::void
+		get TOP->artikelUrl to look for data
+
+	protected download():String[HTML_page]
+		downloads page content as HTML
+
+	public getDrs()::Array()[Drs-Nr]
+		returns array with all found Drs [Drs-Nr][Drs-URL]
+
+	…
+
+
+class Sitzung
+=============
+
+	VARS
+	----
+	public nr
+	public week
+	public year
+	public updated
+
+	METHODS
+	-------
+	public __construct ( nr, week, year )
+		sets variables in class
+
+
+
+
+class TOP
+=========
+
+	VARS
+	----
+	public begin
+	public end
+	public sitzungsNr
+	public topNr
+	public title
+	public description
+	public status
+	public abstimmung
+	public drs
+	public gremien
+	public akteure
+	public artikelUrl
+	public updated
+
+	METHODS
+	-------
+	public __construct( begin, end, name, description, status )::void
+		sets variables above + timestamp
