@@ -183,6 +183,9 @@
 	border: none;
 }
 .calsub-button {
+
+	display: none; // hide calendar-selector
+
 	width: 5em;
 	height: 5em;
 	float: right;
