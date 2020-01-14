@@ -1,6 +1,7 @@
 *~
 *.save
 *.orig
+*.db
 
 /calendar.html
 /calendar-button.html
