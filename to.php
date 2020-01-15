@@ -109,7 +109,8 @@ class TODB {
 
 	public function __destruct(){
 
-		self::$db::close();
+		$db = self::$db;
+		$db::close();
 
 	}
 
