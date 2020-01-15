@@ -433,8 +433,10 @@ class Parser {
 
 		$sitzungen = array();
 
+		$htmlString = strval($htmlpage);
+
 		$doc = new DOMDocument();
-		$doc = $doc->loadHTML($htmlpage);
+		$doc = $doc->loadHTML($htmlString);
 
 		$xpath = new DOMXpath($doc);
 
