@@ -95,6 +95,8 @@ class TOP {
 
 }
 
+<?php
+
 class TODB {
 
 	//methods
@@ -118,41 +120,41 @@ class TODB {
 
 	private function insertTOP($o){
 		
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, $o->title, $o->description, $o->status, $o->abstimmung, $o->drs, $o->gremien, $o->akteure, $o->artikelUrl, $o->updated)";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
 	      new Log(self, "Success", "insertTOP() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
 	private function insertSitzung($o){
 		
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o->nr, $o->week, $o->year, $o->startDate, $o->updated)";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
 	      new Log(self, "Success", "insertSitzung() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
@@ -175,41 +177,41 @@ class TODB {
 
 	private function updateTOP($o){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "UPDATE tops SET topNr = $o->topNr, startTime = $o->start, endTime = $o->end, duration = $o->duration, title = '$o->title', description = '$o->description', status = '$o->status', abstimmung = '$o->abstimmung', drs = '$o->drs', gremien = '$o->gremien', akteure = '$o->akteure', artikelUrl = '$o->artikelUrl', updated = $o->updated WHERE id = $o->dbid";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg() );
+	      new Log(self, "Error", $db->lastErrorMsg() );
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db::changes() . " – updateTOP() was successful.");
+	      new Log(self, "Success", $db->changes() . " – updateTOP() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
 	private function updateSitzung($o){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "UPDATE sitzungen SET week = $o->week, year = $o->year, startdate = $o->startDate, updated = $o->updated WHERE sitzungsNr = $o->nr";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db::changes() . " – updateSitzung() was successful.");
+	      new Log(self, "Success", $db->changes() . " – updateSitzung() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
@@ -229,41 +231,41 @@ class TODB {
 
 	private function deleteTOP($o){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "DELETE FROM tops WHERE id = $o->dbid";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db::changes() . " – deleteTOP() was successful.");
+	      new Log(self, "Success", $db->changes() . " – deleteTOP() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
 	private function deleteSitzung($o){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o->nr";
 
-		$r = $db::exec($query);
+		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db::changes() . " – deleteSitzung() was successful.");
+	      new Log(self, "Success", $db->changes() . " – deleteSitzung() was successful.");
 	      return true;
 	   	}
 
-		$db::close();
+		$db->close();
 
 	}
 
@@ -271,10 +273,10 @@ class TODB {
 
 		$db = new SQLite3(DB_NAME);
 
-		$result = $db::query("SELECT name FROM sqlite_master WHERE type= 'table'");
-		$rows = count( $result::fetchArray() );
+		$result = $db->query("SELECT name FROM sqlite_master WHERE type= 'table'");
+		$rows = count( $result->fetchArray() );
 
-		$db::close();
+		$db->close();
 
 		return ($rows < 2);
 
@@ -282,7 +284,7 @@ class TODB {
 
 	public function isSaved( $object ){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		switch ( get_class( $object ) ) {
 			case 'Sitzung':
@@ -298,11 +300,11 @@ class TODB {
 				break;
 		}
 
-		$q = $db::query($query);
-		$result = $q::fetchArray()[1];
+		$q = $db->query($query);
+		$result = $q->fetchArray()[1];
 		$result = $result[$index];
 
-		$db::close();
+		$db->close();
 
 		return $result;
 
@@ -325,7 +327,7 @@ class TODB {
 
 	public function createDB(){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		//Tabelle für Sitzungen erstellen
 		$tableSitzungen ="
@@ -361,10 +363,12 @@ class TODB {
 			    updated     DATETIME
 			);";
 
-		$db::exec($tableSitzungen);
-		$db::exec($tableTOPs);
+		$db->exec($tableSitzungen);
+		$db->exec($tableTOPs);
 
 		new Log(self, "Success", "database created.");
+
+		$db->close();
 
 	}
 
