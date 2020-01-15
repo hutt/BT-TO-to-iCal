@@ -97,23 +97,7 @@ class TOP {
 
 class TODB {
 
-	//class vars
-	private $db;
-
 	//methods
-	public function __construct(){
-
-		self::$db = new SQLite3(DB_NAME);
-	
-	}
-
-	public function __destruct(){
-
-		$db = self::$db;
-		$db::close();
-
-	}
-
 	public function insert($object){
 
 		$object = self::escapeStringsInObject($object);
@@ -131,7 +115,6 @@ class TODB {
 		}
 
 	}
-
 
 	private function insertTOP($o){
 		
@@ -153,7 +136,6 @@ class TODB {
 
 	}
 
-
 	private function insertSitzung($o){
 		
 		$db = self::$db;
@@ -171,6 +153,7 @@ class TODB {
 	   	}
 
 		$db::close();
+
 	}
 
 	public function update($object){
@@ -190,7 +173,6 @@ class TODB {
 
 	}
 
-
 	private function updateTOP($o){
 
 		$db = self::$db;
@@ -208,8 +190,8 @@ class TODB {
 	   	}
 
 		$db::close();
-	}
 
+	}
 
 	private function updateSitzung($o){
 
@@ -228,6 +210,7 @@ class TODB {
 	   	}
 
 		$db::close();
+
 	}
 
 	public function delete($object){
@@ -243,7 +226,6 @@ class TODB {
 		}
 
 	}
-
 
 	private function deleteTOP($o){
 
@@ -264,7 +246,6 @@ class TODB {
 		$db::close();
 
 	}
-
 
 	private function deleteSitzung($o){
 
@@ -288,7 +269,7 @@ class TODB {
 
 	public function isSetUp(){
 
-		$db = self::$db;
+		$db = new SQLite3(DB_NAME);
 
 		$result = $db::query("SELECT name FROM sqlite_master WHERE type= 'table'");
 		$rows = count( $result::fetchArray() );
