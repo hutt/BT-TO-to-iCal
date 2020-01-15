@@ -134,6 +134,7 @@ class TODB {
 
 
 	private function insertTOP($o){
+		
 		$db = self::$db;
 
 		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, $o->title, $o->description, $o->status, $o->abstimmung, $o->drs, $o->gremien, $o->akteure, $o->artikelUrl, $o->updated)";
@@ -153,7 +154,8 @@ class TODB {
 	}
 
 
-	private static function insertSitzung($o){
+	private function insertSitzung($o){
+		
 		$db = self::$db;
 
 		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o->nr, $o->week, $o->year, $o->startDate, $o->updated)";
@@ -189,7 +191,8 @@ class TODB {
 	}
 
 
-	private static function updateTOP($o){
+	private function updateTOP($o){
+
 		$db = self::$db;
 
 		$query = "UPDATE tops SET topNr = $o->topNr, startTime = $o->start, endTime = $o->end, duration = $o->duration, title = '$o->title', description = '$o->description', status = '$o->status', abstimmung = '$o->abstimmung', drs = '$o->drs', gremien = '$o->gremien', akteure = '$o->akteure', artikelUrl = '$o->artikelUrl', updated = $o->updated WHERE id = $o->dbid";
@@ -208,7 +211,8 @@ class TODB {
 	}
 
 
-	private static function updateSitzung($o){
+	private function updateSitzung($o){
+
 		$db = self::$db;
 
 		$query = "UPDATE sitzungen SET week = $o->week, year = $o->year, startdate = $o->startDate, updated = $o->updated WHERE sitzungsNr = $o->nr";
@@ -227,6 +231,7 @@ class TODB {
 	}
 
 	public function delete($object){
+
 		switch ( get_class($object) ) {
 			case 'TOP':
 				return self::deleteTOP($object);
@@ -236,10 +241,12 @@ class TODB {
 				return self::deleteSitzung($object);
 				break;
 		}
+
 	}
 
 
-	private static function deleteTOP($o){
+	private function deleteTOP($o){
+
 		$db = self::$db;
 
 		$query = "DELETE FROM tops WHERE id = $o->dbid";
@@ -255,10 +262,12 @@ class TODB {
 	   	}
 
 		$db::close();
+
 	}
 
 
-	private static function deleteSitzung($o){
+	private function deleteSitzung($o){
+
 		$db = self::$db;
 
 		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o->nr";
@@ -274,6 +283,7 @@ class TODB {
 	   	}
 
 		$db::close();
+
 	}
 
 	public function isSetUp(){
