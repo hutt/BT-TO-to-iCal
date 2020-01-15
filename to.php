@@ -1,20 +1,20 @@
 <?php
 
-/*	
+/**	
 	BT-TO-to-iCal
 	Copyright (C) 2020 Jannis Hutt
 
 	@author Jannis Hutt
 	@email github@jh0.eu
 	@description Classes for TO handling
-*/
+**/
 
-/* Settings */
+// Settings
 // Name der DB mit Dateiendung
 const DB_NAME = "to.db";
 const DEBUG = true;
 
-/* Klassen */
+// Klassen
 class Log {
 
 	public function __construct($object, $cat, $msg){
@@ -101,6 +101,8 @@ class TODB {
 
 	public static function insert($object){
 
+		$object = self::escapeStringsInObject($object);
+
 		switch ( get_class($object) ) {
 
 			case 'TOP':
@@ -118,7 +120,7 @@ class TODB {
 	private static function insertTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, '$o->title', '$o->description', '$o->status', '$o->abstimmung', '$o->drs', '$o->gremien', '$o->akteure', '$o->artikelUrl', $o->updated)";
+		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, $o->title, $o->description, $o->status, $o->abstimmung, $o->drs, $o->gremien, $o->akteure, $o->artikelUrl, $o->updated)";
 
 		$r = $db::exec($query);
 	   	
@@ -153,6 +155,9 @@ class TODB {
 	}
 
 	public static function update($object){
+
+		$object = self::escapeStringsInObject($object);
+
 		switch ( get_class($object) ) {
 
 			case 'TOP':
@@ -163,6 +168,7 @@ class TODB {
 				return self::updateSitzung($object);
 				break;
 		}
+
 	}
 
 	private static function updateTOP($o){
@@ -290,12 +296,27 @@ class TODB {
 
 	}
 
+	private static function escapeStringsInObject($object){
+
+		//iterate thourgh object values
+		foreach ($object as $key => $o) {
+
+			if(gettype($o) == "string"){
+				$object[$key] = SQLite3::escapeString($o);
+			}
+
+		}
+
+		return $object;
+
+	}
+
 	public static function createDB(){
 
 		$db = SQLite3::open(DB_NAME);
 
 		//Tabelle für Sitzungen erstellen
-		$tableSitzungen =<<<EOF
+		$tableSitzungen ="
 			CREATE TABLE IF NOT EXISTS sitzungen (
 			    sitzungsNr INTEGER  PRIMARY KEY
 			                        UNIQUE,
@@ -303,11 +324,10 @@ class TODB {
 			    year       INTEGER  NOT NULL,
 			    startdate  DATE 	NOT NULL,
 			    updated    DATETIME
-			);
-		EOF;
+			);";
 
 		//Tabelle für TOPs erstellen
-		$tableTOPs =<<<EOF
+		$tableTOPs = "
 			CREATE TABLE IF NOT EXISTS tops (
 			    id          INTEGER  PRIMARY KEY AUTOINCREMENT
 			                         UNIQUE
@@ -327,8 +347,7 @@ class TODB {
 			    akteure     TEXT,
 			    artikelUrl  STRING,
 			    updated     DATETIME
-			);
-		EOF;
+			);";
 
 		$db::exec($tableSitzungen);
 		$db::exec($tableTOPs);
@@ -340,8 +359,6 @@ class TODB {
 	}
 
 }
-
-exit;
 
 class FetchTOs {
 
@@ -522,3 +539,5 @@ class Parser {
 	}
 
 }
+
+?>
