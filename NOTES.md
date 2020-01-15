@@ -114,7 +114,7 @@ Wrapper for database operations
 
 	VARS
 	----
-	protected db
+	private db
 
 	METHODS
 	-------
@@ -152,8 +152,8 @@ Fetching TOs from bundestag.de
 
 	VARS
 	----
-	protected week
-	protected year
+	private week
+	private year
 
 	METHODS
 	-------
@@ -163,7 +163,7 @@ Fetching TOs from bundestag.de
 	public fetch()::String[HTML_page]
 		downloads page content as HTML
 
-	protected buildRequestURL()::String[url]
+	private buildRequestURL()::String[url]
 		Builds URL in 'https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year={year}&week={week}'' scheme
 
 
@@ -174,15 +174,15 @@ Fetching TOP Details from bundestag.de
 
 	VARS
 	----
-	protected articleUrl
-	protected siteContents
+	private articleUrl
+	private siteContents
 
 	METHODS
 	-------
 	public __construct ( TOP )::void
 		get TOP->artikelUrl to look for data
 
-	protected download():String[HTML_page]
+	private download():String[HTML_page]
 		downloads page content as HTML
 
 	public getDrs()::Array()[Drs-Nr]
@@ -198,7 +198,7 @@ Parse Data and save it to database
 
 	VARS
 	----
-	protected htmlpage
+	private htmlpage
 
 	METHODS
 	-------
