@@ -19,7 +19,7 @@ class Log {
 
 	public function __construct($cat, $msg){
 
-		$logmsg = "[" . $cat . "]" . ": " . $msg;
+		$logmsg = "[" . $cat . "]" . " " . $msg ."\n";
 		
 		if(DEBUG){
 			echo $logmsg;
@@ -436,10 +436,10 @@ class Parser {
 
 		$sitzungen = array();
 
-		$htmlString = strval($htmlpage);
-
 		$doc = new DOMDocument();
-		$doc->loadHTML($htmlString);
+		
+		//dirty way to suppress errors because of invalid HTML
+		@$doc->loadHTML($htmlpage);
 
 		$xpath = new DOMXpath($doc);
 
