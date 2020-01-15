@@ -25,7 +25,7 @@ class Log {
 	}
 }
 
-public class Sitzung {
+class Sitzung {
 
 	//class variables
 	public $nr;
@@ -45,7 +45,7 @@ public class Sitzung {
 
 }
 
-public class TOP {
+class TOP {
 
 	//class variables
 	//from database
@@ -86,7 +86,7 @@ public class TOP {
 
 }
 
-public class TODB {
+class TODB {
 
 	//class methods
 
@@ -326,7 +326,7 @@ public class TODB {
 
 }
 
-public class FetchTOs {
+class FetchTOs {
 
 	//class variables
 	protected $week;
@@ -368,11 +368,11 @@ public class FetchTOs {
 
 }
 
-public class FetchTOPDetails {
+class FetchTOPDetails {
 	//todo
 }
 
-public class Parser {
+class Parser {
 	
 	//class variables
 	protected $htmlpage;
