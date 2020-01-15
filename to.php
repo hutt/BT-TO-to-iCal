@@ -119,8 +119,8 @@ class TODB {
 
 
 	private static function insertTOP($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, $o->title, $o->description, $o->status, $o->abstimmung, $o->drs, $o->gremien, $o->akteure, $o->artikelUrl, $o->updated)";
 
@@ -140,8 +140,8 @@ class TODB {
 
 
 	private static function insertSitzung($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o->nr, $o->week, $o->year, $o->startDate, $o->updated)";
 
@@ -177,8 +177,8 @@ class TODB {
 
 
 	private static function updateTOP($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "UPDATE tops SET topNr = $o->topNr, startTime = $o->start, endTime = $o->end, duration = $o->duration, title = '$o->title', description = '$o->description', status = '$o->status', abstimmung = '$o->abstimmung', drs = '$o->drs', gremien = '$o->gremien', akteure = '$o->akteure', artikelUrl = '$o->artikelUrl', updated = $o->updated WHERE id = $o->dbid";
 
@@ -197,8 +197,8 @@ class TODB {
 
 
 	private static function updateSitzung($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "UPDATE sitzungen SET week = $o->week, year = $o->year, startdate = $o->startDate, updated = $o->updated WHERE sitzungsNr = $o->nr";
 
@@ -229,8 +229,8 @@ class TODB {
 
 
 	private static function deleteTOP($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "DELETE FROM tops WHERE id = $o->dbid";
 
@@ -249,8 +249,8 @@ class TODB {
 
 
 	private static function deleteSitzung($o){
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o->nr";
 
@@ -269,8 +269,8 @@ class TODB {
 
 	public function isSetUp(){
 
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		$result = $db::query("SELECT name FROM sqlite_master WHERE type= 'table'");
 		$rows = count( $result::fetchArray() );
@@ -283,8 +283,8 @@ class TODB {
 
 	public function isSaved( $object ){
 
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		switch ( get_class( $object ) ) {
 			case 'Sitzung':
@@ -327,8 +327,8 @@ class TODB {
 
 	public function createDB(){
 
-		$db = new SQLite3();
-		$db::open(DB_NAME);
+		$db = new SQLite3(DB_NAME);
+		$db::open();
 
 		//Tabelle für Sitzungen erstellen
 		$tableSitzungen ="
