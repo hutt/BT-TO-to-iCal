@@ -275,7 +275,11 @@ class TODB {
 
 		$db->close();
 
-		return ($rows < 2);
+		$result = ($rows < 2);
+
+		new Log("isSetUp()", "returned " . $result);
+
+		return $result;
 
 	}
 
