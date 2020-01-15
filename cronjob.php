@@ -32,10 +32,9 @@ $data = new FetchTOs(3, 2020);
 $data->fetch();
 
 // Parsen
-$parse = new Parser($data);
-
-$sitzungen = $parse->findTOs();
-//$tops = $parse::findTOPs();
+$parse = new Parser();
+$sitzungen = $parse->findTOs($data);
+//$tops = $parse->findTOPs();
 
 // Speichern der TOs in der Datenbank
 foreach ($sitzungen as $key => $sitzung) {

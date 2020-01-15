@@ -426,23 +426,15 @@ class FetchTOPDetails {
 }
 
 class Parser {
-	
-	//class variables
-	private $htmlpage;
 
 	//methods
-	public function __construct($html){
 
-		$this->htmlpage = $html;
-
-	}
-
-	public function findTOs(){
+	public static function findTOs($htmlpage){
 
 		$sitzungen = array();
 
 		$doc = new DOMDocument();
-		$doc = $doc->loadHTML($this->htmlpage);
+		$doc = $doc->loadHTML($htmlpage);
 
 		$xpath = new DOMXpath($doc);
 
