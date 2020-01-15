@@ -390,7 +390,7 @@ class FetchTOs {
 
 		//curl_setopt($c, option, value);
 
-		$html = curl_exec($c);
+		//$html = curl_exec($c);
 
 		$error = curl_error($c);
 
@@ -435,7 +435,9 @@ class Parser {
 
 		$sitzungen = array();
 
-		$doc = new DOMDocument()->loadHTML($this->htmlpage);
+		$doc = new DOMDocument();
+		$doc = $doc->loadHTML($this->htmlpage);
+		
 		$xpath = new DOMXpath($doc);
 
 		$tos = $xpath->query("/html/body/div[@class='bt-standard-content']/table");
