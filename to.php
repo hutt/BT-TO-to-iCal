@@ -41,11 +41,11 @@ class Sitzung {
 
 	//methods
 	public function __construct($nr, $week, $year, $startDate){
-		self::$nr = $nr;
-		self::$week = $week;
-		self::$year = $year;
-		self::$startDate = $startDate;
-		self::$updated = time();
+		$this->nr = $nr;
+		$this->week = $week;
+		$this->year = $year;
+		$this->startDate = $startDate;
+		$this->updated = time();
 	}
 
 }
@@ -77,19 +77,19 @@ class TOP {
 	//methods
 	public function __construct($start, $end, $sitzungsNr, $topNr, $title, $description, $status){
 
-		self::$start = $start;
-		self::$end = $end;
-		self::$sitzungsNr = $sitzungsNr;
-		self::$topNr = $topNr;
-		self::$title = $title;
-		self::$description = $description;
-		self::$updated = time();
+		$this->start = $start;
+		$this->end = $end;
+		$this->sitzungsNr = $sitzungsNr;
+		$this->topNr = $topNr;
+		$this->title = $title;
+		$this->description = $description;
+		$this->updated = time();
 
 	}
 
 	public function setDbid($dbid){
 
-		self::$dbid = $dbid;
+		$this->dbid = $dbid;
 
 	}
 
@@ -380,13 +380,13 @@ class FetchTOs {
 
 	//methods
 	public function __construct($week, $year){
-		self::$week = $week;
-		self::$year = $year;
+		$this->week = $week;
+		$this->year = $year;
 	}
 
 	public function fetch(){
 
-		$url = self::buildRequestUrl();
+		$url = $this->buildRequestUrl();
 		$c = curl_init($url);
 
 		//curl_setopt($c, option, value);
@@ -409,7 +409,7 @@ class FetchTOs {
 
 	private function buildRequestUrl(){
 
-		$url = "https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year=" . self::$year . "&week=" . self::$week;
+		$url = "https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year=" . $this->year . "&week=" . $this->week;
 		return $url;
 
 	}
@@ -429,17 +429,17 @@ class Parser {
 
 	//methods
 	public function __construct($html){
-		self::$htmlpage = $html;
+		$this->htmlpage = $html;
 	}
 
 	public function findTOs(){
 
 		$sitzungen = array();
 
-		$doc = DOMDocument::loadHTML(self::htmlpage);
+		$doc = DOMDocument::loadHTML($this->htmlpage);
 		$xpath = new DOMXpath($doc);
 
-		$tos = $xpath::query("/html/body/div[@class='bt-standard-content']/table");
+		$tos = $xpath->query("/html/body/div[@class='bt-standard-content']/table");
 
 		foreach ($tos as $key => $to) {
 			//every TO is in one table
@@ -456,7 +456,7 @@ class Parser {
 			$date = new TimeDate( self::parseDateFromBT($startDateText, "U") );
 
 			//startDate
-			$startDate = $date::format("Y-m-d");
+			$startDate = $date->format("Y-m-d");
 
 			//Sitzungsnummer
 			$nrRegex = "([0-9]+)(?=\.\sSitzung\))";
@@ -464,10 +464,10 @@ class Parser {
 			$sitzungsNr = array_values($nrMatches[1])[0]; // "139"
 
 			//Week
-			$week = $date::format("W");
+			$week = $date->format("W");
 
 			//Year
-			$year = $date::format("Y");
+			$year = $date->format("Y");
 
 			//Sitzungs-Object erzeugen
 			$sitzung = new Sitzung($sitzungsNr, $week, $year, $startDate);
@@ -547,7 +547,7 @@ class Parser {
 		$date = date_create_from_format("j.n.Y", $numDate);
 
 		//return in output format
-		return $date::format($outputFormat);
+		return $date->format($outputFormat);
 	}
 
 }
