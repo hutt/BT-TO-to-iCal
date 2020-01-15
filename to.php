@@ -95,8 +95,6 @@ class TOP {
 
 }
 
-<?php
-
 class TODB {
 
 	//methods
