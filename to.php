@@ -439,11 +439,11 @@ class Parser {
 		$htmlString = strval($htmlpage);
 
 		$doc = new DOMDocument();
-		$doc = $doc->loadHTML($htmlString);
+		$doc->loadHTML($htmlString);
 
 		$xpath = new DOMXpath($doc);
 
-		$tos = $xpath->query("/html/body/div[@class='bt-standard-content']/table");
+		$tos = $xpath->query("div[@class='bt-standard-content']/table");
 
 		foreach ($tos as $key => $to) {
 			//every TO is in one table
