@@ -16,13 +16,17 @@ const DEBUG = true;
 
 /* Klassen */
 class Log {
+
 	public function __construct( $object, $cat, $msg ){
+
 		$class = get_class($object);
 		$logmsg = $class . "[" . $cat . "]" . ": " . $msg;
 		if(DEBUG){
 			echo $logmsg;
 		}
+
 	}
+
 }
 
 class Sitzung {
@@ -71,6 +75,7 @@ class TOP {
 
 	//methods
 	public function __construct($start, $end, $sitzungsNr, $topNr, $title, $description, $status){
+
 		self::$start = $start;
 		self::$end = $end;
 		self::$sitzungsNr = $sitzungsNr;
@@ -78,10 +83,13 @@ class TOP {
 		self::$title = $title;
 		self::$description = $description;
 		self::$updated = time();
+
 	}
 
 	public function setDbid($dbid){
+
 		self::$dbid = $dbid;
+
 	}
 
 }
@@ -91,7 +99,9 @@ class TODB {
 	//class methods
 
 	public static function insert($object){
+
 		switch ( get_class($object) ) {
+
 			case 'TOP':
 				return self::insertTOP($object);
 				break;
@@ -99,7 +109,9 @@ class TODB {
 			case 'Sitzung':
 				return self::insertSitzung($object);
 				break;
+
 		}
+
 	}
 
 	protected static function insertTOP($o){
@@ -141,6 +153,7 @@ class TODB {
 
 	public static function update($object){
 		switch ( get_class($object) ) {
+
 			case 'TOP':
 				return self::updateTOP($object);
 				break;
@@ -320,7 +333,7 @@ class TODB {
 
 		$db::close();
 
-		new Log(self, "Datenbank erstellt.");
+		new Log(self, "Success", "database created.");
 
 	}
 
@@ -369,7 +382,9 @@ class FetchTOs {
 }
 
 class FetchTOPDetails {
+
 	//todo
+
 }
 
 class Parser {
@@ -433,6 +448,8 @@ class Parser {
 	}
 
 	public function findTOPs(){
+
+		//todo
 
 	}
 
@@ -501,7 +518,4 @@ class Parser {
 	}
 
 }
-
-
-
 
