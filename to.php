@@ -478,9 +478,10 @@ class Parser {
 
 			//In Array schieben
 			array_push($sitzungen, $sitzung);
-		}
 
-		new Log("Success", "Parsed TOs: " . var_dump($sitzungen));
+			new Log("Success", "Parsed TO: " . var_dump($sitzung);
+				
+		}
 
 		return $sitzungen;
 
