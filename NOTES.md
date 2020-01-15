@@ -59,6 +59,53 @@ SETTINGS
 
 CLASSES
 
+class Sitzung
+=============
+
+	VARS
+	----
+	public nr
+	public week
+	public year
+	public startDate
+	public updated
+
+	METHODS
+	-------
+	public __construct ( nr, week, year, startDate )
+		sets variables in class
+
+
+class TOP
+=========
+
+	VARS
+	----
+	public dbid
+	public begin
+	public end
+	public sitzungsNr
+	public topNr
+	public title
+	public description
+	public status
+	public abstimmung
+	public drs
+	public gremien
+	public akteure
+	public artikelUrl
+	public updated
+
+	METHODS
+	-------
+	public __construct( begin, end, name, description, status )::void
+		sets variables above + timestamp
+
+	public setDbid( dbid )::void
+		sets dbid (useful when reading from database)
+
+
+
 class TODB
 ==========
 
@@ -68,19 +115,32 @@ class TODB
 
 	METHODS
 	-------
-	public __construct()::void
-		this->db = open database (SQLite3->open())
+	public insert( object )::boolean
+		inserts object (TOP or Sitzung) into database
+		returns true if successful
 
-	public checkStatus()::void
+	public update( object )::boolean
+		updates object (TOP or Sitzung) in database
+		returns true if successful
+
+	public delete( object )::boolean
+		deletes object (TOP or Sitzung) in database
+		returns true if successful
+
+	public isSetUp()::boolean
 		checks if database file already exists.
-		when not: runs createDB()
 
 	public inDB( object )::boolean
 		tells if object is already saved in db
 
-	protected createDB()::void
+	public isSaved ( object )::integer
+		returns primary key if object is already saved in database;
+		returns 0 if not
+
+	public createDB()::boolean
 		creates database with name 'DB_NAME'
 		including tables 'tops' and 'sitzungen'
+
 
 
 class FetchTOs
@@ -101,6 +161,7 @@ class FetchTOs
 
 	protected buildRequestURL()::String[url]
 		Builds URL in 'https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year={year}&week={week}'' scheme
+
 
 
 class FetchTOPDetails
@@ -125,44 +186,26 @@ class FetchTOPDetails
 	…
 
 
-class Sitzung
-=============
+
+class Parser
+==============
 
 	VARS
 	----
-	public nr
-	public week
-	public year
-	public updated
+	protected htmlpage
+	protected tos
+	protected tops
 
 	METHODS
 	-------
-	public __construct ( nr, week, year )
-		sets variables in class
+	public __construct( html )::void
+		sets htmlpage to html
 
+	public findTOs()::array([object Sitzung])
+		parses htmlpage with DOMDocument::loadHTML() and returns array with Sitzung objects
 
+	public findTOPs()::array([object TOP])
+		parses htmlpage with DOMDocument::loadHTML() and returns array with TOP objects
 
-
-class TOP
-=========
-
-	VARS
-	----
-	public begin
-	public end
-	public sitzungsNr
-	public topNr
-	public title
-	public description
-	public status
-	public abstimmung
-	public drs
-	public gremien
-	public akteure
-	public artikelUrl
-	public updated
-
-	METHODS
-	-------
-	public __construct( begin, end, name, description, status )::void
-		sets variables above + timestamp
+	public parseDateFromBT( text, outputFormat )::mixed
+		parses date from BT Website (e.g. "15. Januar 2020") and returns it in outputFormat (normal format parameters)
