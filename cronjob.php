@@ -22,8 +22,8 @@ require("to.php");
 
 $todb = new TODB();
 
-if (!$todb::isSetUp()) {
-	$todb::createDB();
+if (!$todb->isSetUp()) {
+	$todb->createDB();
 }
 
 // Daten für Kalenderwoche 3 holen
