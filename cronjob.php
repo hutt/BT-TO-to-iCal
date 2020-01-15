@@ -39,20 +39,20 @@ $sitzungen = $parse->findTOs($data);
 // Speichern der TOs in der Datenbank
 foreach ($sitzungen as $key => $sitzung) {
 	
-	$alreadySaved = $todb::inDB($sitzung);
+	$alreadySaved = $todb->inDB($sitzung);
 
 	if($alreadySaved){
 
-		$todb::update($sitzung);
+		$todb->update($sitzung);
 
 	}else{
 
-		$todb::insert($sitzung);
+		$todb->insert($sitzung);
 		
 	}
 
 }
 
-echo "Skript durchgelaufen.";
+echo "[Info] End of script.";
 
 ?>
