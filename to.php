@@ -17,10 +17,11 @@ const DEBUG = true;
 /* Klassen */
 class Log {
 
-	public function __construct( $object, $cat, $msg ){
+	public function __construct($object, $cat, $msg){
 
 		$class = get_class($object);
-		$logmsg = $class . "[" . $cat . "]" . ": " . $msg;
+		$logmsg = $class . " [" . $cat . "]" . ": " . $msg;
+		
 		if(DEBUG){
 			echo $logmsg;
 		}
@@ -117,7 +118,7 @@ class TODB {
 	protected static function insertTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o::$sitzungsNr, $o::$topNr, $o::$start, $o::$end, $o::$duration, '$o::$title', '$o::$description', '$o::$status', '$o::$abstimmung', '$o::$drs', '$o::$gremien', '$o::$akteure', '$o::$artikelUrl', $o::$updated)";
+		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, '$o->title', '$o->description', '$o->status', '$o->abstimmung', '$o->drs', '$o->gremien', '$o->akteure', '$o->artikelUrl', $o->updated)";
 
 		$r = $db::exec($query);
 	   	
@@ -136,7 +137,7 @@ class TODB {
 	protected static function insertSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o::$nr, $o::$week, $o::$year, $o::$startDate, $o::$updated)";
+		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o->nr, $o->week, $o->year, $o->startDate, $o->updated)";
 
 		$r = $db::exec($query);
 	   	
@@ -167,7 +168,7 @@ class TODB {
 	protected static function updateTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "UPDATE tops SET topNr = $o::$topNr, startTime = $o::$start, endTime = $o::$end, duration = $o::$duration, title = '$o::$title', description = '$o::$description', status = '$o::$status', abstimmung = '$o::$abstimmung', drs = '$o::$drs', gremien = '$o::$gremien', akteure = '$o::$akteure', artikelUrl = '$o::$artikelUrl', updated = $o::$updated WHERE id = $o::$dbid";
+		$query = "UPDATE tops SET topNr = $o->topNr, startTime = $o->start, endTime = $o->end, duration = $o->duration, title = '$o->title', description = '$o->description', status = '$o->status', abstimmung = '$o->abstimmung', drs = '$o->drs', gremien = '$o->gremien', akteure = '$o->akteure', artikelUrl = '$o->artikelUrl', updated = $o->updated WHERE id = $o->dbid";
 
 		$r = $db::exec($query);
 	   	
@@ -185,7 +186,7 @@ class TODB {
 	protected static function updateSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "UPDATE sitzungen SET week = $o::$week, year = $o::$year, startdate = $o::$startDate, updated = $o::$updated WHERE sitzungsNr = $o::$nr";
+		$query = "UPDATE sitzungen SET week = $o->week, year = $o->year, startdate = $o->startDate, updated = $o->updated WHERE sitzungsNr = $o->nr";
 
 		$r = $db::exec($query);
 	   	
@@ -215,7 +216,7 @@ class TODB {
 	protected static function deleteTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "DELETE FROM tops WHERE id = $o::$dbid";
+		$query = "DELETE FROM tops WHERE id = $o->dbid";
 
 		$r = $db::exec($query);
 	   	
@@ -233,7 +234,7 @@ class TODB {
 	protected static function deleteSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
-		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o::$nr";
+		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o->nr";
 
 		$r = $db::exec($query);
 	   	
@@ -512,11 +513,7 @@ class Parser {
 		$date = date_create_from_format("j.n.Y", $numDate);
 
 		//return in output format
-		return $date::format($outputFormat);
+		return ( $date::format($outputFormat) );
 	}
 
 }
-
-// the end.
-
-?>
