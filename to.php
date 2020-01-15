@@ -391,8 +391,6 @@ class Parser {
 	
 	//class variables
 	protected $htmlpage;
-	protected $tos;
-	protected $tops;
 
 	//methods
 	public function __construct($html){
@@ -519,3 +517,6 @@ class Parser {
 
 }
 
+// the end.
+
+?>
