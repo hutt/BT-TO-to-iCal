@@ -386,7 +386,7 @@ class FetchTOs {
 
 	public function fetch(){
 
-		$url = $this->buildRequestUrl();
+		$url = self::buildRequestUrl();
 		$c = curl_init($url);
 
 		//curl_setopt($c, option, value);
