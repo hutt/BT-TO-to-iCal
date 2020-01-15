@@ -173,7 +173,7 @@ class TODB {
 		$r = $db::exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db::lastErrorMsg());
+	      new Log(self, "Error", $db::lastErrorMsg() );
 	      return false;
 	   	} else {
 	      new Log(self, "Success", $db::changes() . " – updateTOP() was successful.");
@@ -253,8 +253,8 @@ class TODB {
 
 		$db = SQLite3::open(DB_NAME);
 
-		$result = $db::query("SELECT name FROM sqlite_master WHERE type='table'");
-		$rows = count($result::fetchArray());
+		$result = $db::query("SELECT name FROM sqlite_master WHERE type= 'table'");
+		$rows = count( $result::fetchArray() );
 
 		$db::close();
 
@@ -269,13 +269,13 @@ class TODB {
 		switch ( get_class( $object ) ) {
 			case 'Sitzung':
 				//Match with sitzungsNr
-				$query = "SELECT * FROM sitzungen WHERE sitzungsNr = $object::$nr";
+				$query = "SELECT * FROM sitzungen WHERE sitzungsNr = $object->nr";
 				$index = "sitzungsNr";
 				break;
 			
 			case 'TOP':
 				//Match with title and sitzungsNr
-				$query = "SELECT * FROM tops WHERE sitzungsNr = $object::$sitzungsNr AND title = '$object::$title' LIMIT 1";
+				$query = "SELECT * FROM tops WHERE sitzungsNr = $object->sitzungsNr AND title = '$object->title' LIMIT 1";
 				$index = "id";
 				break;
 		}
@@ -366,7 +366,7 @@ class FetchTOs {
 		if($error){
 			new Log(self, "Error", " at download: " . $error);
 		}else{
-			new Log(self, "Success", "Download of Webpage successful.")
+			new Log(self, "Success", "Download of Webpage successful.");
 		}
 
 		curl_close($c);
