@@ -275,9 +275,9 @@ class TODB {
 
 		$db->close();
 
-		$result = ($rows < 2);
+		$result = ($rows == 2);
 
-		new Log("isSetUp()", "returned " . $result);
+		new Log("TODB::isSetUp()", "returned " . $result);
 
 		return $result;
 
@@ -367,7 +367,7 @@ class TODB {
 		$db->exec($tableSitzungen);
 		$db->exec($tableTOPs);
 
-		new Log("Success", "Database created.");
+		new Log("TODB::createDB()", "Database set up.");
 
 		$db->close();
 
