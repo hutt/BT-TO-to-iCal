@@ -91,7 +91,7 @@ class TODB {
 	//class methods
 
 	public static function insert($object){
-		switch ( $object::class ) {
+		switch ( get_class($object) ) {
 			case 'TOP':
 				return self::insertTOP($object);
 				break;
@@ -140,7 +140,7 @@ class TODB {
 	}
 
 	public static function update($object){
-		switch ( $object::class ) {
+		switch ( get_class($object) ) {
 			case 'TOP':
 				return self::updateTOP($object);
 				break;
@@ -188,7 +188,7 @@ class TODB {
 	}
 
 	public static function delete($object){
-		switch ( $object::class ) {
+		switch ( get_class($object) ) {
 			case 'TOP':
 				return self::deleteTOP($object);
 				break;
