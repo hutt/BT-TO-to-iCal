@@ -413,6 +413,9 @@ class FetchTOs {
 	private function buildRequestUrl(){
 
 		$url = "https://www.bundestag.de/apps/plenar/plenar/conferenceweekDetail.form?year=" . $this->year . "&week=" . $this->week;
+		
+		new Log("Success", "Request URL built: " . $url);
+
 		return $url;
 
 	}

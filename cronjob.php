@@ -29,7 +29,7 @@ if (!$todb->isSetUp()) {
 // Daten für Kalenderwoche 3 holen
 $data = new FetchTOs(3, 2020);
 
-$data->fetch();
+$data = $data->fetch();
 
 // Parsen
 $parse = new Parser();
