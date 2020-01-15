@@ -386,11 +386,15 @@ class FetchTOs {
 	public function fetch(){
 
 		$url = self::buildRequestUrl();
-		$c = curl_init($url);
+		
+		$c = curl_init();
+		$timeout = 5;
 
-		//curl_setopt($c, option, value);
+		curl_setopt($c, CURLOPT_URL, $url);
+		curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($c, CURLOPT_CONNECTTIMEOUT, $timeout);
 
-		//$html = curl_exec($c);
+		$html = curl_exec($c);
 
 		$error = curl_error($c);
 
@@ -428,7 +432,9 @@ class Parser {
 
 	//methods
 	public function __construct($html){
+
 		$this->htmlpage = $html;
+
 	}
 
 	public function findTOs(){
@@ -437,7 +443,7 @@ class Parser {
 
 		$doc = new DOMDocument();
 		$doc = $doc->loadHTML($this->htmlpage);
-		
+
 		$xpath = new DOMXpath($doc);
 
 		$tos = $xpath->query("/html/body/div[@class='bt-standard-content']/table");
@@ -476,6 +482,8 @@ class Parser {
 			//In Array schieben
 			array_push($sitzungen, $sitzung);
 		}
+
+		new Log("Success", "Parsed TOs: " . var_dump($sitzungen));
 
 		return $sitzungen;
 
