@@ -270,7 +270,7 @@ class TODB {
 
 		$db = new SQLite3(DB_NAME);
 
-		$result = $db->query("SELECT name FROM sqlite_master WHERE type= 'table'");
+		$result = $db->query("SELECT name FROM sqlite_master WHERE type= 'table';");
 		$rows = count( $result->fetchArray() );
 
 		$db->close();
@@ -327,7 +327,7 @@ class TODB {
 		$db = new SQLite3(DB_NAME);
 
 		//Tabelle für Sitzungen erstellen
-		$tableSitzungen ="
+		$tableSitzungen = "
 			CREATE TABLE IF NOT EXISTS sitzungen (
 			    sitzungsNr INTEGER  PRIMARY KEY
 			                        UNIQUE,
@@ -363,7 +363,7 @@ class TODB {
 		$db->exec($tableSitzungen);
 		$db->exec($tableTOPs);
 
-		new Log("Success", "database created.");
+		new Log("Success", "Database created.");
 
 		$db->close();
 
