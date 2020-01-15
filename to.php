@@ -99,7 +99,7 @@ class TODB {
 
 	//class methods
 
-	public static function insert($object){
+	public function insert($object){
 
 		$object = self::escapeStringsInObject($object);
 
@@ -117,7 +117,7 @@ class TODB {
 
 	}
 
-	private static function insertTOP($o){
+	private function insertTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "INSERT INTO tops (sitzungsNr, topNr, startTime, endTime, duration, title, description, status, abstimmung, drs, gremien, akteure, artikelUrl, updated) VALUES ($o->sitzungsNr, $o->topNr, $o->start, $o->end, $o->duration, $o->title, $o->description, $o->status, $o->abstimmung, $o->drs, $o->gremien, $o->akteure, $o->artikelUrl, $o->updated)";
@@ -136,7 +136,7 @@ class TODB {
 
 	}
 
-	private static function insertSitzung($o){
+	private function insertSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "INSERT INTO sitzungen (sitzungsNr, week, year, startdate, updated) VALUES ($o->nr, $o->week, $o->year, $o->startDate, $o->updated)";
@@ -154,7 +154,7 @@ class TODB {
 		$db::close();
 	}
 
-	public static function update($object){
+	public function update($object){
 
 		$object = self::escapeStringsInObject($object);
 
@@ -171,7 +171,7 @@ class TODB {
 
 	}
 
-	private static function updateTOP($o){
+	private function updateTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "UPDATE tops SET topNr = $o->topNr, startTime = $o->start, endTime = $o->end, duration = $o->duration, title = '$o->title', description = '$o->description', status = '$o->status', abstimmung = '$o->abstimmung', drs = '$o->drs', gremien = '$o->gremien', akteure = '$o->akteure', artikelUrl = '$o->artikelUrl', updated = $o->updated WHERE id = $o->dbid";
@@ -189,7 +189,7 @@ class TODB {
 		$db::close();
 	}
 
-	private static function updateSitzung($o){
+	private function updateSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "UPDATE sitzungen SET week = $o->week, year = $o->year, startdate = $o->startDate, updated = $o->updated WHERE sitzungsNr = $o->nr";
@@ -207,7 +207,7 @@ class TODB {
 		$db::close();
 	}
 
-	public static function delete($object){
+	public function delete($object){
 		switch ( get_class($object) ) {
 			case 'TOP':
 				return self::deleteTOP($object);
@@ -219,7 +219,7 @@ class TODB {
 		}
 	}
 
-	private static function deleteTOP($o){
+	private function deleteTOP($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "DELETE FROM tops WHERE id = $o->dbid";
@@ -237,7 +237,7 @@ class TODB {
 		$db::close();
 	}
 
-	private static function deleteSitzung($o){
+	private function deleteSitzung($o){
 		$db = SQLite3::open(DB_NAME);
 
 		$query = "DELETE FROM sitzungen WHERE sitzungsNr = $o->nr";
@@ -255,7 +255,7 @@ class TODB {
 		$db::close();
 	}
 
-	public static function isSetUp(){
+	public function isSetUp(){
 
 		$db = SQLite3::open(DB_NAME);
 
@@ -268,7 +268,7 @@ class TODB {
 
 	}
 
-	public static function isSaved( $object ){
+	public function isSaved( $object ){
 
 		$db = SQLite3::open(DB_NAME);
 
@@ -296,7 +296,7 @@ class TODB {
 
 	}
 
-	private static function escapeStringsInObject($object){
+	private function escapeStringsInObject($object){
 
 		//iterate thourgh object values
 		foreach ($object as $key => $o) {
@@ -311,7 +311,7 @@ class TODB {
 
 	}
 
-	public static function createDB(){
+	public function createDB(){
 
 		$db = SQLite3::open(DB_NAME);
 
