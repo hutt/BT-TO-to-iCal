@@ -17,10 +17,9 @@ const DEBUG = true;
 // Klassen
 class Log {
 
-	public function __construct($object, $cat, $msg){
+	public function __construct($cat, $msg){
 
-		$class = get_class($object);
-		$logmsg = $class . " [" . $cat . "]" . ": " . $msg;
+		$logmsg = "[" . $cat . "]" . ": " . $msg;
 		
 		if(DEBUG){
 			echo $logmsg;
@@ -125,10 +124,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg());
+	      new Log("Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", "insertTOP() was successful.");
+	      new Log("Success", "insertTOP() was successful.");
 	      return true;
 	   	}
 
@@ -145,10 +144,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg());
+	      new Log("Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", "insertSitzung() was successful.");
+	      new Log("Success", "insertSitzung() was successful.");
 	      return true;
 	   	}
 
@@ -182,10 +181,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg() );
+	      new Log("Error", $db->lastErrorMsg() );
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db->changes() . " – updateTOP() was successful.");
+	      new Log("Success", $db->changes() . " – updateTOP() was successful.");
 	      return true;
 	   	}
 
@@ -202,10 +201,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg());
+	      new Log("Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db->changes() . " – updateSitzung() was successful.");
+	      new Log("Success", $db->changes() . " – updateSitzung() was successful.");
 	      return true;
 	   	}
 
@@ -236,10 +235,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg());
+	      new Log("Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db->changes() . " – deleteTOP() was successful.");
+	      new Log("Success", $db->changes() . " – deleteTOP() was successful.");
 	      return true;
 	   	}
 
@@ -256,10 +255,10 @@ class TODB {
 		$r = $db->exec($query);
 	   	
 	   	if(!$r) {
-	      new Log(self, "Error", $db->lastErrorMsg());
+	      new Log("Error", $db->lastErrorMsg());
 	      return false;
 	   	} else {
-	      new Log(self, "Success", $db->changes() . " – deleteSitzung() was successful.");
+	      new Log("Success", $db->changes() . " – deleteSitzung() was successful.");
 	      return true;
 	   	}
 
@@ -364,7 +363,7 @@ class TODB {
 		$db->exec($tableSitzungen);
 		$db->exec($tableTOPs);
 
-		new Log(self, "Success", "database created.");
+		new Log("Success", "database created.");
 
 		$db->close();
 
@@ -396,9 +395,9 @@ class FetchTOs {
 		$error = curl_error($c);
 
 		if($error){
-			new Log(self, "Error", " at download: " . $error);
+			new Log("Error", " at download: " . $error);
 		}else{
-			new Log(self, "Success", "Download of Webpage successful.");
+			new Log("Success", "Download of Webpage successful.");
 		}
 
 		curl_close($c);
@@ -436,7 +435,7 @@ class Parser {
 
 		$sitzungen = array();
 
-		$doc = DOMDocument::loadHTML($this->htmlpage);
+		$doc = new DOMDocument()->loadHTML($this->htmlpage);
 		$xpath = new DOMXpath($doc);
 
 		$tos = $xpath->query("/html/body/div[@class='bt-standard-content']/table");
