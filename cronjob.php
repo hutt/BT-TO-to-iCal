@@ -19,15 +19,33 @@ require("to.php");
 //Status der DB checken
 $todb = new TODB();
 
-if (!$todb->checkStatus()) {
-	$todb->createDB();
+if (!$todb::isSetUp()) {
+	$todb::createDB();
 }
 
-// Daten für Kalenderwoche 3
-$data = new FetchTOs(3, 2020)->fetch();
-$parse = new TOParser($data);
+// Daten für Kalenderwoche 3 holen
+$data = new FetchTOs(3, 2020)::fetch();
 
-if($parse){
-	//Parsen erfolgreich
-	echo "Neue Daten erfolgreich geparst.";
+// Parsen
+$parse = new Parser($data);
+
+$sitzungen = $parse::findTOs();
+//$tops = $parse::findTOPs();
+
+// Speichern der TOs in der Datenbank
+foreach ($sitzungen as $key => $sitzung) {
+	
+	$alreadySaved = $todb::inDB($sitzung);
+
+	if($alreadySaved){
+
+		$todb::update($sitzung);
+
+	}else{
+
+		$todb::insert($sitzung);
+		
+	}
+
 }
+
