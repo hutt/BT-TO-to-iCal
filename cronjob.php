@@ -1,6 +1,6 @@
 <?php
 
-/*	
+/**	
 	BT-TO-to-iCal
 	Copyright (C) 2020 Jannis Hutt
 
@@ -8,25 +8,26 @@
 	@email github@jh0.eu
 	@description retrieve schedule from bundestag.de, parse it, save it to database
 
-*/
+**/
 
 error_reporting(E_ALL);
 
 require("to.php");
 
-/*
+/**
 	Test-Beispiel:
-*/
+**/
 
 //Status der DB checken
-$todb = new TODB();
 
-if (!$todb::isSetUp()) {
-	$todb::createDB();
+if (!TODB::isSetUp()) {
+	TODB::createDB();
 }
 
 // Daten für Kalenderwoche 3 holen
-$data = new FetchTOs(3, 2020)::fetch();
+$data = new FetchTOs(3, 2020);
+
+$data::fetch();
 
 // Parsen
 $parse = new Parser($data);
@@ -51,3 +52,6 @@ foreach ($sitzungen as $key => $sitzung) {
 
 }
 
+echo "Skript durchgelaufen.";
+
+?>
