@@ -188,13 +188,11 @@ class FetchTOPDetails
 
 
 class Parser
-==============
+============
 
 	VARS
 	----
 	protected htmlpage
-	protected tos
-	protected tops
 
 	METHODS
 	-------
