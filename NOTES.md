@@ -61,6 +61,7 @@ CLASSES
 
 class Sitzung
 =============
+Object for Sitzung
 
 	VARS
 	----
@@ -78,6 +79,7 @@ class Sitzung
 
 class TOP
 =========
+Object for Tagesordnungspunkt
 
 	VARS
 	----
@@ -108,6 +110,7 @@ class TOP
 
 class TODB
 ==========
+Wrapper for database operations
 
 	VARS
 	----
@@ -145,6 +148,7 @@ class TODB
 
 class FetchTOs
 ==============
+Fetching TOs from bundestag.de
 
 	VARS
 	----
@@ -166,6 +170,7 @@ class FetchTOs
 
 class FetchTOPDetails
 =====================
+Fetching TOP Details from bundestag.de
 
 	VARS
 	----
@@ -189,6 +194,7 @@ class FetchTOPDetails
 
 class Parser
 ============
+Parse Data and save it to database
 
 	VARS
 	----
