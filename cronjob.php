@@ -20,8 +20,10 @@ require("to.php");
 
 //Status der DB checken
 
-if (!TODB::isSetUp()) {
-	TODB::createDB();
+$todb = new TODB();
+
+if (!$todb::isSetUp()) {
+	$todb::createDB();
 }
 
 // Daten für Kalenderwoche 3 holen
